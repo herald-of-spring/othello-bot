@@ -17,13 +17,13 @@ A sample input file is given, which can be modified as necessary
 Run *homework.py*, which reads *input.txt* and writes *output.txt* which is the move the agent has chosen.
 
 ## Training Usage
-There are several modes within trainer.py - *sample match*, *learning*, and *training*. 
+There are several modes within *trainer.py* - *sample match*, *learning*, and *training*. 
 
-*Sample match*, when set to True (Line 147) will allow the manipulation of the 2x10 heuristics (more on this later) on Lines 151 and 152, which will face each other and with the visual aid of the board to see the status of the game.  
+*Sample match*, when set to *True* (Line 147) will allow the manipulation of the 2x10 heuristics (more on this later) on Lines 151 and 152, which will face each other and with the visual aid of the board to see the status of the game.  
 
-*Training* happens when **both** sample match and learning are False (default), which attempts to find good heuristics (more on how - *Part 3: Heuristic Training*) and logs them in *history.txt* (a sample is given - the result of 2 days of training). This is an **INTENSIVE PROCESS** that can take DAYS. Be warned!
+*Training* happens when **both** sample match and learning are *False* (default), which attempts to find good heuristics (more on how - *Part 3: Heuristic Training*) and logs them in *history.txt* (a sample is given - the result of 2 days of training). This is an **INTENSIVE PROCESS** that can take DAYS. Be warned!
 
-*Learning*, when set to True (Line 149) will take the results of training and face them against each other in a round robin format and will output the tournament results in *round-robin-log.txt* (a sample is given - the tournament took 6 hours), each line indicates the wins playing as [O], wins as [X], and the heuristic values used.  
+*Learning*, when set to *True* (Line 149) will take the results of training and face them against each other in a round robin format and will output the tournament results in *round-robin-log.txt* (a sample is given - the tournament took 6 hours), each line indicates the wins playing as [O], wins as [X], and the heuristic values used.  
 In addition, each move played in all the games of the tournament will be logged into an opening book, recording the success (wins, total) of each move, in *openings.txt* (provided, and is used in the current version of *homework.py*, more on opening books - *Part 4: Choosing the Correct Heuristic and Opening Books*). Again, this is an **INTENSIVE PROCESS**!
 
 At a high level, running *trainer.py* calls *bot.py*, which is a near copy of *homework.py*, but returns different results (to aid with different output formats) and uses dynamic heuristics. When training or learning, it plays several matches at once, which requires high computing power.
