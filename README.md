@@ -81,6 +81,13 @@ Center control: -2/10 early, -8/10 late
 Group count: -1/10 early, 9/10 late  
 In other words, corners are always important, mobility's importance scales with game state, disc count is (surprisingly) unimportant, central discs are devastating, and groups are undesired (late does not matter as much here as it becomes difficult to have many groups as the board fills up).
 
-In addition, the next most valuable output from the round-robin tournament is game data. Because there are no established game databases to learn from, the program has to make it itself. 
+In addition, the next most valuable output from the round-robin tournament is game data to create an opening book. The concept of opening theory is that it allows the bypassing of thinking during the early game and delivering the agent into a smooth, advantageous mid game. As a result, the agent can capitalize on an advantageous set up whilst having more time on the clock. Opening books, however, require extensive game databases. They are usually curated from professional matches and catalogued according to win-rate and play-rate, which are in the millions.  
 
-## Part 5: Discussion and Future Improvements
+Because there are no established game databases to learn from (for modified Othello), the program has to make it itself, and not from professional level matches either. The largest moveset holds a modest 408 games, and that will have to do for now. The generated opening book can be found at openings.txt, which is then copied to homework.py.
+
+## Part 5: Future Improvements
+The bottleneck of the current algorithm lies in the fact that it still takes a long time to search, achieving a lookahead of 3-4 moves on average. By comparison, a professional player can achieve a lookahead of 8 moves. To improve upon this search time, a persistent file can be saved when the agent makes a move that results in the opponent skipping theirs. In the current version, the agent has to do the entire search again when it could have saved a sequence of moves since there is no interference from the opponent.
+
+Another improvement, or rather idea, is to have a more detailed heuristic. Although undocumented, a cubic implementation (instead of linear as of the current version) is somewhat explored, but did not seem to garner effective results. Later, when transitioning to linear, a mistake in the code is found, but re-transitioning would sabotage the little training time that is left before project submission. Thus, cubic heuristic implementation deserves a revisit.
+
+*I hope you have enjoyed reading my journey through game playing algorithms and findings. The project was most enjoyable as I code for many days and nurtured the various iterations to take seed. For any inquiries, further details, or if you simply want to show your improvements and ideas to this code (feel free to!), please email andy.ducanh@gmail.com*
