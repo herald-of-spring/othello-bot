@@ -298,28 +298,3 @@ if __name__ == '__main__':
             file.write(str(gen_data))
             file.close()
             print("Seeding complete, run program again to train")
-    # round-robin tournament on 'refined' bots in history.txt
-    robin = [[-0.4, 90, -0.1, 70, 0.7, -35, 0.2, 25, 0.6, -85],
-             [-0.1, 70, -0.3, 80, 0.55, -40, -0.1, 30, 0.3, -45]]
-    with open("history.txt", "r") as file:
-        for line in file:
-            if line[0] == '[':
-                robin.append(eval(line.rstrip()))
-    records = {}
-    openings = {}
-    for bot in robin:
-        pool = multiprocessing.Pool(processes=len(robin))
-        for i in range(len(robin)):
-            pool.apply_async(startmatch, args=(bot, robin[i], False, True), callback=robin_callback)
-        pool.close()
-        pool.join()
-        print(datetime.datetime.now().time())
-        print(len(openings))
-    print("Final Scoring:")
-    for bot, wins in records.items():
-        print(wins[0], wins[1], bot)
-    # writes to file a flattened board as string and associated statistics
-    # format: {XXOX.XOX.......O.XOO....OXOO.XO...: [[wins, total, move], [wins, total, move]...], ...}
-    file = open("openings.txt", "w")
-    file.write(str(openings))
-    file.close()
